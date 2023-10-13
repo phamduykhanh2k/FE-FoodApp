@@ -28,6 +28,7 @@ import { ProductManagerComponent } from './main/manager/product-manager/product-
 import { SettingsComponent } from './main/settings/settings.component';
 import { AccountComponent } from './main/settings/account/account.component';
 import { OrdersComponent } from './main/settings/orders/orders.component';
+import { CategoryManagerComponent } from './main/manager/category-manager/category-manager.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { OrdersComponent } from './main/settings/orders/orders.component';
     SettingsComponent,
     AccountComponent,
     OrdersComponent,
+    CategoryManagerComponent,
   ],
   imports: [
     BrowserModule,
