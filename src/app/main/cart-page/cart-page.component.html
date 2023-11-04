@@ -1,0 +1,112 @@
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Thực phẩm xanh và sạch</p>
+                    <h1>Giỏ hàng</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<div *ngIf="cart.length > 0" class="cart-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="cart-table-wrap">
+                    <table class="cart-table">
+                        <thead class="cart-table-head">
+                            <tr class="table-head-row">
+                                <th class="product-remove"></th>
+                                <th class="product-image">Hình ảnh</th>
+                                <th class="product-name">Sản phẩm</th>
+                                <th class="product-price">Giá</th>
+                                <th class="product-quantity">Số lượng</th>
+                                <th class="product-total">Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of cart; let i = index" class="table-body-row">
+                                <td class="product-remove"><a (click)="handleRemoveItemToCart(i)"><i
+                                            class="far fa-window-close"></i></a></td>
+                                <td class="product-image"><img src="{{item.product.image}}" alt="Hình ảnh"></td>
+                                <td class="product-name">{{item.product.name}}</td>
+                                <td class="product-price">{{item.product.price | currency: "VND"}}</td>
+                                <td class="product-quantity">
+                                    <input type="number" value="{{item.quantity}}" (input)="onchangeQuantity($event, i)"
+                                        min="1" max="100" />
+                                </td>
+                                <td class="product-total">{{item.product.price * item.quantity | currency: "VND"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="total-section">
+                    <table class="total-table">
+                        <thead class="total-table-head">
+                            <tr class="table-total-row">
+                                <th>Chi phí</th>
+                                <th>Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total-data">
+                                <td><strong>Tạm tính: </strong></td>
+                                <td>{{totalSumary.subTotal | currency: "VND"}}</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Vận chuyển: </strong></td>
+                                <td>{{totalSumary.shippingCost | currency: "VND"}}</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Giảm giá: </strong></td>
+                                <td>{{totalSumary.discount | currency: "VND"}}</td>
+                            </tr>
+                            <tr class="total-data">
+                                <td><strong>Tổng: </strong></td>
+                                <td>{{totalSumary.total | currency: "VND"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="cart-buttons">
+                        <a (click)="onUpdateCart()" class="boxed-btn">Cập nhật</a>
+                        <a href="checkout.html" class="boxed-btn black">Đặt hàng</a>
+                    </div>
+                </div>
+
+                <div class="coupon-section">
+                    <h3>Mã giảm giá</h3>
+                    <div class="coupon-form-wrap">
+                        <form action="index.html">
+                            <p><input type="text" placeholder="Nhập mã giảm giá"></p>
+                            <p><input type="submit" value="Apply"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="cart.length === 0" class="full-height-section error-section">
+    <div class="full-height-tablecell">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="error-text">
+                        <img class="far fa-sad-cry" src="../../../assets/img/empty-cart.png" />
+                        <h1>Oops! Giỏ hàng đang trống</h1>
+                        <p>Hãy ghé cửa hàng để lựa chọn sản phẩm với nhiều ưu đãi hấp dẫn bạn nhé</p>
+                        <a routerLink="/shop" class="boxed-btn">Đến cửa hàng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
